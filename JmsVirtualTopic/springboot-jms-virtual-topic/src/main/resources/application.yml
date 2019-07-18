@@ -1,0 +1,29 @@
+server:
+  port: 8191
+# JMS Configuration
+spring:
+# JMS Configuration
+  jms:
+    cache:
+      session-cache-size: 10
+    listener:
+      acknowledge-mode: auto
+      auto-startup: true
+      concurrency: 5
+      max-concurrency: 10
+    pub-sub-domain: false
+    template:
+      default-destination: 
+      delivery-mode: non-persistent
+      priority: 100
+      qos-enabled: true
+      receive-timeout: 1000
+      # Keeps the message in queue for 1 hour
+      time-to-live: 3600000 
+  activemq:
+    broker-url: tcp://localhost:61616?jms.redeliveryPolicy.maximumRedeliveries=-1
+    user: admin
+    password: admin
+    packages:
+        trust-all: false
+        trusted: com.rs.app
